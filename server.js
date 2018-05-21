@@ -1,0 +1,45 @@
+// Dependencies
+var http = require("http");
+var fs = require("fs");
+var express = require("express");
+var bodyParser = require("body-parser");
+var path = require("path");
+
+// express helps handle data parsing
+var app = express();
+
+// Port
+var PORT = process.env.PORT || 8000;
+
+// Sets up the Express app to handle data parsing
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// gives other ROUTES to navigate on the page
+// require("app/routing/apiRoutes")(app);
+// require("app/routing/htmlRoutes")(app);
+
+// ROUTES that will initiate different html pages
+app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "/app/public/home.html"));
+  });
+
+  app.get("/survey", function(req, res) {
+    res.sendFile(path.join(__dirname, "/app/public/survey.html"));
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+// Initiate listening for server 
+app.listen(PORT, function() {
+    console.log("Friend-Finder on PORT" + PORT);
+})
