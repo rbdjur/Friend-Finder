@@ -1,6 +1,7 @@
-{
-  "name": "Ahmed",
-  "photo": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+var friends =
+[{
+  "name": "Ronnie",
+  "photo": "http://knowyourmeme.com/memes/manningface",
   "scores":[
       5,
       1,
@@ -13,6 +14,8 @@
       4,
       1
     ]
-}
+}]
+
+module.exports = friends;
 
 

@@ -2,7 +2,7 @@
   "name": "Friend-Finder",
   "version": "1.0.0",
   "description": "A web page matching individuals who share similar likes and dislikes.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,7 +19,6 @@
   "homepage": "https://github.com/rbdjur/Friend-Finder#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.3",
-    "http": "0.0.0"
+    "express": "^4.16.3"
   }
 }

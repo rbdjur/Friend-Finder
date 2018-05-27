@@ -3,30 +3,67 @@
 // var fs = require("fs");
 // var express = require("express");
 // var bodyParser = require("body-parser");
-// var path = require("path");
+var path = require("path");
 
 // // express helps handle data parsing
 // var app = express();
+var friends = require("../data/friends.js");
 
-// //GET ROUTES
-// app.get("/", function(req, res) {
-//     res.sendFile(path.join(__dirname, "/app/public/home.html"));
-//   });
+// //GET ROUTES  - Routing
+module.exports = function (app) {
+    app.get("/api/friends", function (req,res) {
+        console.log("LOOK HERE", req.body);
+        // module.exports = userData;
+        // res.sendFile(path.join(__dirname, "../data/friends.js"));
+        res.json(friends);
+    })
+    // POST ROUTES
+    app.post("/api/friends", function (req, res) {
+        console.log("POST method, info in req body", req.body)
+
+        var userData = req.body;
+        friends.push(userData);
+        var userScores = userData.scores;
+        var totalDifference = 1000;
+        var bestMatch = {
+            name: "",
+            photo: "",
+            friendDifference: 1000
+        };
+    
+
+        for (var i = 0; i < friends.length; i++) {
+            var currentFriend = friends[i];
+            var currentFriendScore = 0;
+
+            console.log(currentFriend.name);
+            for (var a = 0; a < 10; a++) {
+                var qDif = userData.scores[a] - currentFriend.scores[a];
+                currentFriendScore += qDif;
+
+            }
+            if (currentFriendScore <= totalDifference) {
+                bestMatch = currentFriend;
+
+            }
+            res.json(bestMatch);
+        }
+
+
+        res.json(friends);
+    });
+}
+
 
 //   app.get("/survey", function(req, res) {
 //     res.sendFile(path.join(__dirname, "/app/public/survey.html"));
 //   });
 
-//   app.get("/api/friends", function(req, res) {
-//     res.sendFile(path.join(__dirname, "/app/data/friends.js"));
-//   });
 
-// // POST ROUTES
-// app.post("/data/friends.js", function(req, res) {
-//     console.log("POST method,  info in req body", req.body);
-//     var newUser = req.body;
-//     newUser.routeName = newUser.name.replace(/\s+/g, "").toLowerCase();
-//     console.log(newUser);
-//     users.push(newUser);
-//     res.json(newUser);
-// })
+
+// module.exports = function (app) {
+//     app.get("/api/friends", function(req, res) {
+//         res.json(req.body);
+//       });
+// }
+
